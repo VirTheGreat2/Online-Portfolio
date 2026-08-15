@@ -1,5 +1,10 @@
 "use server";
 
+export async function checkServerStatus() {
+  console.log("Server action ping received at:", new Date().toISOString());
+  return { status: "ok" };
+}
+
 import { createServerSideClient } from "@/lib/supabase-server";
 import { revalidatePath } from "next/cache";
 
@@ -28,12 +33,38 @@ export async function updateProfile(formData: FormData) {
   let avatarUrl = formData.get("existing_avatar_url") as string;
 
   if (imageFile && imageFile.size > 0) {
+    console.log(`Uploading image: ${imageFile.name}, size: ${imageFile.size} bytes`);
     const fileName = `avatar-${user.id}-${Date.now()}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
+    
+    // Attempt auto-creation if bucket doesn't exist
+    let { data: uploadData, error: uploadError } = await supabase.storage
       .from("portfolio-images")
       .upload(fileName, imageFile);
 
-    if (uploadError) throw uploadError;
+    if (uploadError && uploadError.message === "Bucket not found") {
+      try {
+        await supabase.storage.createBucket("portfolio-images", { public: true });
+        const retry = await supabase.storage
+          .from("portfolio-images")
+          .upload(fileName, imageFile);
+        uploadData = retry.data;
+        uploadError = retry.error;
+      } catch {
+        // Fall through to error handler if creation is not permitted
+      }
+    }
+
+    if (uploadError || !uploadData) {
+      console.error("Supabase Storage Error:", uploadError);
+      if (uploadError?.message === "Bucket not found") {
+        return {
+          error:
+            "Storage bucket 'portfolio-images' not found. Please create a public bucket named 'portfolio-images' in your Supabase dashboard.",
+        };
+      }
+      return { error: uploadError?.message || "Failed to upload image" };
+    }
+    console.log("Upload successful:", uploadData.path);
 
     const {
       data: { publicUrl },
@@ -44,19 +75,19 @@ export async function updateProfile(formData: FormData) {
 
   const { error } = await supabase.from("profile").upsert({
     id: user.id,
-    bio_text: bioText,
-    full_name: fullName,
-    background: background,
-    demographics: demographics,
-    avatar_url: avatarUrl,
-    nav_title: navTitle,
-    portfolio_heading: portfolioHeading,
-    portfolio_intro: portfolioIntro,
-    projects_heading: projectsHeading,
-    projects_subheading: projectsSubheading,
-    empty_projects_text: emptyProjectsText,
-    footer_text: footerText,
-    contact_email: contactEmail,
+    bio_text: bioText || undefined,
+    full_name: fullName || undefined,
+    background: background || undefined,
+    demographics: demographics || undefined,
+    avatar_url: avatarUrl || undefined,
+    nav_title: navTitle || undefined,
+    portfolio_heading: portfolioHeading || undefined,
+    portfolio_intro: portfolioIntro || undefined,
+    projects_heading: projectsHeading || undefined,
+    projects_subheading: projectsSubheading || undefined,
+    empty_projects_text: emptyProjectsText || undefined,
+    footer_text: (footerText === "|||" ? undefined : footerText),
+    contact_email: contactEmail || undefined,
     updated_at: new Date().toISOString(),
   });
 
@@ -85,12 +116,36 @@ export async function addProject(formData: FormData) {
   let imageUrl = "";
 
   if (imageFile && imageFile.size > 0) {
+    console.log(`Uploading project image: ${imageFile.name}, size: ${imageFile.size} bytes`);
     const fileName = `${Date.now()}-${imageFile.name}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
+    let { data: uploadData, error: uploadError } = await supabase.storage
       .from("portfolio-images")
       .upload(fileName, imageFile);
 
-    if (uploadError) throw uploadError;
+    if (uploadError && uploadError.message === "Bucket not found") {
+      try {
+        await supabase.storage.createBucket("portfolio-images", { public: true });
+        const retry = await supabase.storage
+          .from("portfolio-images")
+          .upload(fileName, imageFile);
+        uploadData = retry.data;
+        uploadError = retry.error;
+      } catch {
+        // Fall through to error handler if creation is not permitted
+      }
+    }
+
+    if (uploadError || !uploadData) {
+      console.error("Supabase Storage Error:", uploadError);
+      if (uploadError?.message === "Bucket not found") {
+        return {
+          error:
+            "Storage bucket 'portfolio-images' not found. Please create a public bucket named 'portfolio-images' in your Supabase dashboard.",
+        };
+      }
+      return { error: uploadError?.message || "Failed to upload image" };
+    }
+    console.log("Upload successful:", uploadData.path);
 
     const {
       data: { publicUrl },
@@ -128,12 +183,36 @@ export async function updateProject(id: string, formData: FormData) {
   let imageUrl = formData.get("existing_image_url") as string;
 
   if (imageFile && imageFile.size > 0) {
+    console.log(`Uploading project image: ${imageFile.name}, size: ${imageFile.size} bytes`);
     const fileName = `${Date.now()}-${imageFile.name}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
+    let { data: uploadData, error: uploadError } = await supabase.storage
       .from("portfolio-images")
       .upload(fileName, imageFile);
 
-    if (uploadError) throw uploadError;
+    if (uploadError && uploadError.message === "Bucket not found") {
+      try {
+        await supabase.storage.createBucket("portfolio-images", { public: true });
+        const retry = await supabase.storage
+          .from("portfolio-images")
+          .upload(fileName, imageFile);
+        uploadData = retry.data;
+        uploadError = retry.error;
+      } catch {
+        // Fall through to error handler if creation is not permitted
+      }
+    }
+
+    if (uploadError || !uploadData) {
+      console.error("Supabase Storage Error:", uploadError);
+      if (uploadError?.message === "Bucket not found") {
+        return {
+          error:
+            "Storage bucket 'portfolio-images' not found. Please create a public bucket named 'portfolio-images' in your Supabase dashboard.",
+        };
+      }
+      return { error: uploadError?.message || "Failed to upload image" };
+    }
+    console.log("Upload successful:", uploadData.path);
 
     const {
       data: { publicUrl },
@@ -145,11 +224,11 @@ export async function updateProject(id: string, formData: FormData) {
   const { error } = await supabase
     .from("projects")
     .update({
-      title,
-      description,
-      status_text: statusText,
-      image_url: imageUrl,
-      project_url: projectUrl,
+      title: title || undefined,
+      description: description || undefined,
+      status_text: statusText || undefined,
+      image_url: imageUrl || undefined,
+      project_url: projectUrl || undefined,
     })
     .eq("id", id);
 

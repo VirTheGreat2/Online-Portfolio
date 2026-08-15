@@ -30,12 +30,13 @@ export default function ParallaxWrapper({
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#f5d1b0]">
-      <div className="fixed inset-0 noise pointer-events-none" />
+    <div className="relative min-h-screen bg-[#f5d1b0]" suppressHydrationWarning>
+      <div className="fixed inset-0 noise pointer-events-none" suppressHydrationWarning />
 
       {/* Background Decor Layer (-1 depth) */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
+        suppressHydrationWarning
         style={{
           transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
           transition: "transform 0.2s cubic-bezier(0.2, 0, 0.2, 1)",
@@ -105,7 +106,9 @@ export default function ParallaxWrapper({
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10" suppressHydrationWarning>
+        {children}
+      </div>
     </div>
   );
 }

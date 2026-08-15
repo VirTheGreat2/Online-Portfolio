@@ -32,8 +32,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#020617] text-[#F8FAFC]">
-      <div className="p-8 bg-white/[0.02] backdrop-blur-2xl border border-white/10 shadow-2xl rounded-2xl w-full max-w-md animate-fade-in">
+    <div
+      className="flex flex-col items-center justify-center min-h-screen bg-[#020617] text-[#F8FAFC]"
+      suppressHydrationWarning
+    >
+      <div
+        className="p-8 bg-white/[0.02] backdrop-blur-2xl border border-white/10 shadow-2xl rounded-2xl w-full max-w-md animate-fade-in"
+        suppressHydrationWarning
+      >
         <div className="mb-10">
           <h1 className="text-3xl font-semibold mb-2 text-center tracking-tight">
             Admin Portal

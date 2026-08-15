@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Pencil, X, Upload, Settings2, UserCircle2 } from "lucide-react";
-import { updateProfile } from "@/app/actions";
+import { updateProfile, checkServerStatus } from "@/app/actions";
 
 interface Profile {
   id: string;
@@ -40,6 +40,7 @@ export default function BioFormModal({
 
   useEffect(() => {
     setMounted(true);
+    checkServerStatus().then(res => console.log("CMS Connection Test:", res));
   }, []);
 
   // Identity states
@@ -146,7 +147,9 @@ export default function BioFormModal({
   };
 
   const triggerElement = trigger ? (
-    <div onClick={() => setIsOpen(true)}>{trigger}</div>
+    <div onClick={() => setIsOpen(true)} suppressHydrationWarning>
+      {trigger}
+    </div>
   ) : (
     <button
       onClick={() => setIsOpen(true)}

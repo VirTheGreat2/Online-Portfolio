@@ -29,15 +29,20 @@ export default function ProjectFormModal({ project }: { project?: Project }) {
     const formData = new FormData(e.currentTarget);
 
     try {
+      let res;
       if (project) {
-        await updateProject(project.id, formData);
+        res = await updateProject(project.id, formData);
       } else {
-        await addProject(formData);
+        res = await addProject(formData);
       }
-      setIsOpen(false);
-    } catch (error) {
+      if (res?.error) {
+        alert(`Error saving project: ${res.error}`);
+      } else {
+        setIsOpen(false);
+      }
+    } catch (error: any) {
       console.error(error);
-      alert("Error saving project");
+      alert(error?.message || "Error saving project");
     } finally {
       setLoading(false);
     }

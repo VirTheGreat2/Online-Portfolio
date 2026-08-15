@@ -32,11 +32,11 @@ export default async function Portfolio() {
   return (
     <ParallaxWrapper>
       <ScrollIndicator />
-      <div className="max-w-7xl mx-auto px-4 md:px-12 py-12 relative">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 py-12 relative" suppressHydrationWarning>
         {/* Navigation */}
-        <nav className="mb-24 flex flex-col md:flex-row justify-between items-center gap-8 relative z-20">
-          <div className="relative group/nav">
-            <div className="brutalist-card px-8 py-4 bg-white rotate-[-2deg] brutalist-card-hover cursor-pointer">
+        <nav className="mb-24 flex flex-col md:flex-row justify-between items-center gap-8 relative z-20" suppressHydrationWarning>
+          <div className="relative group/nav" suppressHydrationWarning>
+            <div className="brutalist-card px-8 py-4 bg-white rotate-[-2deg] brutalist-card-hover cursor-pointer" suppressHydrationWarning>
               <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-black break-words">
                 {profile?.nav_title || "Developer"}
               </h1>
@@ -55,7 +55,7 @@ export default async function Portfolio() {
               </div>
             )}
           </div>
-          <div className="flex gap-8 items-center">
+          <div className="flex gap-8 items-center" suppressHydrationWarning>
             <a
               href={`mailto:${profile?.contact_email || "contact@example.com"}`}
               className="brutalist-card bg-white px-6 py-2 handwritten text-lg font-black text-black hover:bg-black hover:text-white transition-all flex items-center gap-2 rotate-[1deg]"
@@ -72,9 +72,9 @@ export default async function Portfolio() {
           </div>
         </nav>
 
-        <main className="space-y-32">
+        <main className="space-y-32" suppressHydrationWarning>
           {/* About Me Section (The "Central Hub") */}
-          <section className="flex justify-center">
+          <section className="flex justify-center" suppressHydrationWarning>
             <div className="brutalist-card p-12 md:p-20 max-w-4xl bg-white relative z-10 rotate-[1deg] brutalist-card-hover group">
               {isAdmin && (
                 <div className="absolute -top-4 -right-4 opacity-0 group-hover:opacity-100 transition-opacity z-30">
@@ -89,13 +89,13 @@ export default async function Portfolio() {
                   />
                 </div>
               )}
-              <div className="flex justify-between items-start mb-12">
+              <div className="flex justify-between items-start mb-12" suppressHydrationWarning>
                 <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black italic underline decoration-4 underline-offset-8 break-words">
                   {profile?.portfolio_heading || "My Portfolio"}
                 </h2>
               </div>
 
-              <div className="prose prose-slate max-w-none leading-[1.8] text-black text-xl font-bold">
+              <div className="prose prose-slate max-w-none leading-[1.8] text-black text-xl font-bold" suppressHydrationWarning>
                 <p className="handwritten text-black/60 italic text-2xl">
                   {profile?.portfolio_intro ||
                     "Welcome to my digital workshop. Below you will find my story and the artifacts I've crafted."}
@@ -105,8 +105,8 @@ export default async function Portfolio() {
           </section>
 
           {/* New Identity Section */}
-          <section className="max-w-5xl mx-auto relative z-10">
-            <div className="brutalist-card bg-white p-12 md:p-16 rotate-[-1deg] brutalist-card-hover">
+          <section className="max-w-5xl mx-auto relative z-10" suppressHydrationWarning>
+            <div className="brutalist-card bg-white p-12 md:p-16 rotate-[-1deg] brutalist-card-hover" suppressHydrationWarning>
               <div className="flex flex-col md:flex-row gap-16 items-start">
                 {/* Avatar/Picture */}
                 <div className="w-full md:w-1/3 aspect-square brutalist-card bg-slate-100 overflow-hidden relative group">
@@ -114,7 +114,7 @@ export default async function Portfolio() {
                     <img
                       src={profile.avatar_url}
                       alt={profile.full_name || "Profile"}
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      className="w-full h-full object-cover transition-all duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-black/5">
@@ -137,7 +137,7 @@ export default async function Portfolio() {
                 </div>
 
                 {/* Details */}
-                <div className="w-full md:w-2/3 space-y-8 group/details relative">
+                <div className="w-full md:w-2/3 space-y-8 group/details relative" suppressHydrationWarning>
                   {isAdmin && (
                     <div className="absolute -top-4 -right-4 opacity-0 group-hover/details:opacity-100 transition-opacity z-30">
                       <BioFormModal
@@ -178,8 +178,8 @@ export default async function Portfolio() {
           </section>
 
           {/* Project Section */}
-          <section className="space-y-24 relative z-10 group/projects">
-            <div className="flex justify-between items-end border-b-4 border-black pb-8 relative">
+          <section className="space-y-24 relative z-10 group/projects" suppressHydrationWarning>
+            <div className="flex justify-between items-end border-b-4 border-black pb-8 relative" suppressHydrationWarning>
               <div className="space-y-2">
                 <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black break-words">
                   {profile?.projects_heading || "Manifestations"}
@@ -206,7 +206,7 @@ export default async function Portfolio() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16" suppressHydrationWarning>
               {projects?.map((project, index) => {
                 const rotation =
                   index % 2 === 0 ? "rotate-[-1.5deg]" : "rotate-[1.5deg]";
@@ -221,7 +221,7 @@ export default async function Portfolio() {
                         <img
                           src={project.image_url}
                           alt={project.title}
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                          className="w-full h-full object-cover transition-all duration-300"
                         />
                       </div>
                     )}
@@ -288,10 +288,10 @@ export default async function Portfolio() {
           </section>
         </main>
 
-        <footer className="mt-32 pt-20 border-t-4 border-black flex flex-col md:flex-row justify-between items-center gap-12 relative z-20 group/footer">
-          <div className="relative">
+        <footer className="mt-32 pt-20 border-t-4 border-black flex flex-col md:flex-row justify-between items-center gap-12 relative z-20 group/footer" suppressHydrationWarning>
+          <div className="relative" suppressHydrationWarning>
             <div className="brutalist-card bg-white px-8 py-4 rotate-[-1deg] hover:rotate-0 transition-transform">
-              <div className="space-y-4">
+              <div className="space-y-4" suppressHydrationWarning>
                 {(() => {
                   const footerContent = profile?.footer_text || "";
                   const [quote, author] = footerContent.includes("|||")
