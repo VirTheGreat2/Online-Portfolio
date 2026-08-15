@@ -32,12 +32,12 @@ export default async function Portfolio() {
   return (
     <ParallaxWrapper>
       <ScrollIndicator />
-      <div className="max-w-7xl mx-auto px-12 py-12 relative">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 py-12 relative">
         {/* Navigation */}
-        <nav className="mb-24 flex justify-between items-center relative z-20">
+        <nav className="mb-24 flex flex-col md:flex-row justify-between items-center gap-8 relative z-20">
           <div className="relative group/nav">
             <div className="brutalist-card px-8 py-4 bg-white rotate-[-2deg] brutalist-card-hover cursor-pointer">
-              <h1 className="text-3xl font-black uppercase tracking-tighter text-black">
+              <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-black break-words">
                 {profile?.nav_title || "Developer"}
               </h1>
             </div>
@@ -90,7 +90,7 @@ export default async function Portfolio() {
                 </div>
               )}
               <div className="flex justify-between items-start mb-12">
-                <h2 className="text-5xl font-black uppercase tracking-tighter text-black italic underline decoration-4 underline-offset-8">
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black italic underline decoration-4 underline-offset-8 break-words">
                   {profile?.portfolio_heading || "My Portfolio"}
                 </h2>
               </div>
@@ -152,7 +152,7 @@ export default async function Portfolio() {
                     </div>
                   )}
                   <div className="space-y-2 border-b-4 border-black pb-6">
-                    <h2 className="text-5xl font-black uppercase tracking-tighter text-black italic">
+                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black italic break-words">
                       {profile?.full_name || "The Developer"}
                     </h2>
                     <p className="handwritten text-xl font-bold text-black/60">
@@ -181,7 +181,7 @@ export default async function Portfolio() {
           <section className="space-y-24 relative z-10 group/projects">
             <div className="flex justify-between items-end border-b-4 border-black pb-8 relative">
               <div className="space-y-2">
-                <h2 className="text-6xl font-black uppercase tracking-tighter text-black">
+                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black break-words">
                   {profile?.projects_heading || "Manifestations"}
                 </h2>
                 <p className="handwritten text-sm font-black text-black tracking-widest uppercase italic underline decoration-2 underline-offset-4">
