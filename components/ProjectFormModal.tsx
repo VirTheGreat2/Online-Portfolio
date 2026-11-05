@@ -14,7 +14,12 @@ interface Project {
   status_text?: string;
 }
 
-export default function ProjectFormModal({ project }: { project?: Project }) {
+interface ProjectFormModalProps {
+  project?: Project;
+  trigger?: React.ReactNode;
+}
+
+export default function ProjectFormModal({ project, trigger }: ProjectFormModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -48,96 +53,99 @@ export default function ProjectFormModal({ project }: { project?: Project }) {
     }
   };
 
-  const trigger = (
+  const triggerElement = trigger ? (
+    <span onClick={() => setIsOpen(true)} className="inline-block cursor-pointer">
+      {trigger}
+    </span>
+  ) : (
     <button
+      type="button"
       onClick={() => setIsOpen(true)}
-      className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors px-4 py-2 rounded-lg border border-slate-800 bg-slate-900/50"
+      className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-200 hover:text-white transition-all px-4 py-2 rounded-xl border border-red-500/30 bg-black/80 backdrop-blur-md shadow-[0_0_15px_rgba(239,68,68,0.2)] hover:border-red-500 hover:shadow-[0_0_25px_rgba(239,68,68,0.4)]"
     >
       {project ? (
-        <Pencil size={14} />
+        <Pencil size={14} className="text-red-500" />
       ) : (
         <>
-          <Plus size={14} /> Add Project
+          <Plus size={14} className="text-red-500" /> Add Project
         </>
       )}
     </button>
   );
 
-  if (!isOpen) return trigger;
-
   const modalContent = (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[9999] flex items-center justify-center p-6 animate-in fade-in duration-300">
-      <div className="bg-slate-900 border border-slate-800 shadow-2xl w-full max-w-xl overflow-hidden rounded-3xl animate-in zoom-in-95 duration-300">
-        <div className="px-8 py-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
-          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-indigo-500">
-            {project ? "Update Project" : "New Discovery"}
+    <div className="fixed inset-0 bg-black/85 backdrop-blur-xl z-[9999] flex items-center justify-center p-6 animate-in fade-in duration-300">
+      <div className="glass-card-red border border-red-500/30 bg-black/90 shadow-[0_0_50px_rgba(220,38,38,0.3)] w-full max-w-xl overflow-hidden rounded-3xl animate-in zoom-in-95 duration-300">
+        <div className="px-8 py-6 border-b border-red-500/20 flex justify-between items-center bg-zinc-950/80">
+          <h3 className="text-xs font-black uppercase tracking-[0.2em] text-red-500 red-glow-text">
+            {project ? "Update Project" : "Add New System / Project"}
           </h3>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-slate-500 hover:text-white transition-colors p-2"
+            className="text-slate-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-red-500/10"
           >
             <X size={20} />
           </button>
         </div>
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
           <div className="space-y-2">
-            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
+            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
               Project Title
             </label>
             <input
               name="title"
               defaultValue={project?.title}
               required
-              className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all text-slate-300 placeholder:text-slate-700"
-              placeholder="Modern E-commerce..."
+              className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all text-slate-200 placeholder:text-slate-600 text-sm"
+              placeholder="Enterprise Business System..."
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
-              Overview
+            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+              Overview & Business Impact
             </label>
             <textarea
               name="description"
               defaultValue={project?.description}
               required
               rows={3}
-              className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all text-slate-300 placeholder:text-slate-700"
-              placeholder="Describe the mission and tech stack..."
+              className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all text-slate-200 placeholder:text-slate-600 text-sm"
+              placeholder="Describe how this website/web application solves business needs and tech stack..."
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
-              Project Status / Date
+            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+              Project Status / Category
             </label>
             <input
               name="status_text"
-              defaultValue={project?.status_text || "Stable Build"}
-              className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all text-slate-300 placeholder:text-slate-700"
-              placeholder="May 2024 / Completed"
+              defaultValue={project?.status_text || "Web Application"}
+              className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all text-slate-200 placeholder:text-slate-600 text-sm"
+              placeholder="Website / Web Application / Business System"
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
+            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
               Live URL
             </label>
             <input
               name="project_url"
               type="url"
               defaultValue={project?.project_url}
-              className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all text-slate-300 placeholder:text-slate-700"
+              className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all text-slate-200 placeholder:text-slate-600 text-sm"
               placeholder="https://..."
             />
           </div>
           <div className="space-y-4">
-            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
-              Visual Identity
+            <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+              Project Preview Image
             </label>
             <div className="relative group/file">
               <input
                 name="image"
                 type="file"
                 accept="image/*"
-                className="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-6 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:uppercase file:tracking-[0.1em] file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 file:transition-all file:cursor-pointer"
+                className="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-6 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:uppercase file:tracking-[0.1em] file:bg-red-600 file:text-white hover:file:bg-red-500 file:transition-all file:cursor-pointer"
               />
             </div>
             {project?.image_url && (
@@ -149,7 +157,7 @@ export default function ProjectFormModal({ project }: { project?: Project }) {
             )}
           </div>
 
-          <div className="flex justify-end gap-4 pt-4">
+          <div className="flex justify-end gap-4 pt-4 border-t border-zinc-800">
             <button
               type="button"
               onClick={() => setIsOpen(false)}
@@ -160,12 +168,12 @@ export default function ProjectFormModal({ project }: { project?: Project }) {
             <button
               type="submit"
               disabled={loading}
-              className="bg-indigo-600 text-white px-8 py-2.5 rounded-xl text-xs font-black uppercase tracking-[0.2em] hover:bg-indigo-500 disabled:opacity-50 transition-all shadow-lg shadow-indigo-500/20"
+              className="bg-gradient-to-r from-red-600 via-rose-600 to-red-800 text-white px-8 py-2.5 rounded-xl text-xs font-black uppercase tracking-[0.2em] hover:opacity-95 disabled:opacity-50 transition-all shadow-[0_0_25px_rgba(239,68,68,0.4)]"
             >
               {loading
                 ? "Processing..."
                 : project
-                  ? "Update Mission"
+                  ? "Update Project"
                   : "Deploy Project"}
             </button>
           </div>
@@ -177,11 +185,11 @@ export default function ProjectFormModal({ project }: { project?: Project }) {
   if (mounted) {
     return (
       <>
-        {trigger}
-        {createPortal(modalContent, document.body)}
+        {triggerElement}
+        {isOpen && createPortal(modalContent, document.body)}
       </>
     );
   }
 
-  return trigger;
+  return triggerElement;
 }

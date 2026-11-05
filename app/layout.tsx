@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Architects_Daughter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,15 +7,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const architectsDaughter = Architects_Daughter({
-  weight: "400",
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-handwritten",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "A Digital Craftsman Portfolio",
+  title: "Virgilio Flor E. Guaño | Full-Stack Web Developer",
+  description: "Experienced Full-Stack Web Developer creating high-impact websites, web applications, and business systems.",
 };
 
 export default function RootLayout({
@@ -24,9 +23,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <body
-        className={`${inter.variable} ${architectsDaughter.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} bg-black text-slate-100 antialiased selection:bg-red-600/40 selection:text-white font-sans`}
         suppressHydrationWarning
       >
         {children}
