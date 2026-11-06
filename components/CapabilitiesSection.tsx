@@ -9,8 +9,7 @@ import {
   CheckCircle2, 
   Sparkles,
   ChevronLeft,
-  ChevronRight,
-  ShieldCheck
+  ChevronRight
 } from "lucide-react";
 
 interface ServiceItem {
@@ -26,63 +25,45 @@ interface ServiceItem {
 const SERVICES: ServiceItem[] = [
   {
     id: "websites",
-    title: "Modern Websites",
-    subtitle: "High Conversion & Speed",
+    title: "High-Converting Websites",
+    subtitle: "Speed & Customer Growth",
     icon: Layout,
-    description: "Fast, responsive, and SEO-optimized websites designed to represent your brand professionally and convert visitors into clients.",
+    description: "Fast, custom websites designed to showcase your brand, rank high on Google, and convert site visitors into paying clients.",
     features: [
-      "Responsive & Mobile-First Design",
-      "Search Engine Optimization (SEO)",
-      "High-Speed Edge Performance",
-      "Content Management & Dynamic Content",
-      "Modern Glassmorphism & Cyber Aesthetics"
+      "Mobile-Friendly Layout for All Screen Sizes",
+      "Google Search Optimization to Attract More Clients",
+      "Instant Page Loading to Stop Visitors Leaving",
+      "Easy Content Management for Quick Updates"
     ],
-    techStack: ["Next.js 16", "Tailwind CSS v4", "TypeScript", "Vercel Edge"]
+    techStack: ["Fast Edge Delivery", "SEO Optimized", "Mobile Responsive", "Modern Tech"]
   },
   {
     id: "apps",
-    title: "Web Applications",
-    subtitle: "Interactive & Scalable",
+    title: "Custom Web Applications",
+    subtitle: "Interactive Business Tools",
     icon: Workflow,
-    description: "Full-stack web applications tailored to your business needs, featuring secure user authentication, dashboards, and dynamic features.",
+    description: "Tailored web software that automates client interactions, manages workflows, and streamlines your everyday operations.",
     features: [
-      "Interactive User Dashboards",
-      "Secure User Authentication & Access Control",
-      "Real-time Data Updates & API Integration",
-      "Scalable Front-end Architecture",
-      "Custom Forms & Data Pipelines"
+      "Custom Client Dashboards & Admin Panels",
+      "Secure Account Login & User Protection",
+      "Live Data Updates & Instant Synchronization",
+      "Online Forms & Automated Customer Ordering"
     ],
-    techStack: ["React 19", "Next.js", "TypeScript", "Supabase Auth"]
+    techStack: ["Custom Dashboards", "Secure Logins", "Live Data", "Scalable Systems"]
   },
   {
     id: "systems",
-    title: "Business Systems & APIs",
-    subtitle: "Automation & Database Solutions",
+    title: "Business Automation & Systems",
+    subtitle: "Save Time & Eliminate Manual Work",
     icon: Database,
-    description: "Custom management software, database architectures, and REST APIs that streamline business operations and automate tedious tasks.",
+    description: "Smart system connections and automated database workflows that replace tedious manual tasks and keep your business running smoothly.",
     features: [
-      "Custom Database Schema & Management",
-      "Automated Workflow & Notification Rules",
-      "Back-Office Admin Controls",
-      "RESTful API Development & Integration",
-      "Data Security & Row-Level Security (RLS)"
+      "Connect Your Apps to Share Data Automatically",
+      "Automated Customer Notifications & Email Flows",
+      "Centralized Customer Database & File Storage",
+      "Admin Controls to Monitor Team & Business Activity"
     ],
-    techStack: ["Supabase", "PostgreSQL", "Node.js", "Server Actions"]
-  },
-  {
-    id: "performance",
-    title: "Performance & Cloud Architecture",
-    subtitle: "Scalability & Speed Optimization",
-    icon: ShieldCheck,
-    description: "Architectural audits, cloud deployment pipelines, Core Web Vitals optimization, and robust infrastructure for mission-critical web applications.",
-    features: [
-      "Core Web Vitals & Lighthouse Optimization",
-      "CI/CD Pipeline Setup & Automated Testing",
-      "Edge Caching & Global CDN Strategy",
-      "Security Audits & Row-Level Security (RLS)",
-      "Database Query Tuning & Performance Profiling"
-    ],
-    techStack: ["Docker", "Vercel", "GitHub Actions", "Redis", "Cloudflare"]
+    techStack: ["App Integration", "Automated Flows", "Secure Database", "Data Privacy"]
   }
 ];
 
@@ -162,7 +143,7 @@ export default function CapabilitiesSection() {
       
       {/* Background Glow Effect */}
       <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none">
-        <div className="w-[300px] sm:w-[600px] h-[300px] sm:h-[350px] bg-red-600/10 rounded-full blur-[100px] sm:blur-[120px] transform-gpu" />
+        <div className="w-[300px] sm:w-[600px] h-[250px] sm:h-[300px] bg-red-600/10 rounded-full blur-[100px] sm:blur-[120px] transform-gpu" />
       </div>
 
       {/* Section Header */}
@@ -181,7 +162,7 @@ export default function CapabilitiesSection() {
 
       {/* Carousel Container Stage with 3D Perspective */}
       <div 
-        className="relative min-h-[460px] sm:min-h-[480px] flex items-center justify-center overflow-hidden py-2 [perspective:1000px] sm:[perspective:1200px]"
+        className="relative min-h-[430px] sm:min-h-[460px] flex items-center justify-center overflow-visible py-2 [perspective:1000px] sm:[perspective:1200px]"
         onMouseEnter={handleUserInteraction}
         onTouchStart={handleUserInteraction}
       >
@@ -194,11 +175,6 @@ export default function CapabilitiesSection() {
             if (offset > total / 2) offset -= total;
 
             const isActive = offset === 0;
-            const isPrev = offset === -1;
-            const isNext = offset === 1;
-            const isVisible = isActive || isPrev || isNext;
-
-            const Icon = service.icon;
 
             return (
               <motion.div
@@ -208,12 +184,12 @@ export default function CapabilitiesSection() {
                 animate={{
                   x: isMobile 
                     ? offset === 0 ? "0%" : offset < 0 ? "-100%" : "100%"
-                    : offset === 0 ? "0%" : offset < 0 ? "-62%" : "62%",
-                  scale: isActive ? 1 : isMobile ? 0.9 : 0.85,
+                    : offset === 0 ? "0%" : offset < 0 ? "-65%" : "65%",
+                  scale: isActive ? 1 : isMobile ? 0.85 : 0.82,
                   rotateY: isMobile ? 0 : offset === 0 ? 0 : offset < 0 ? 18 : -18,
-                  opacity: isActive ? 1 : isMobile ? 0 : 0.45,
-                  zIndex: isActive ? 30 : isVisible ? 20 : 10,
-                  filter: isActive ? "brightness(1)" : "brightness(0.65)",
+                  opacity: isActive ? 1 : isMobile ? 0 : 0.15,
+                  zIndex: isActive ? 30 : 10,
+                  filter: isActive ? "brightness(1)" : "brightness(0.3)",
                 }}
                 transition={{
                   type: "spring",
@@ -240,44 +216,44 @@ export default function CapabilitiesSection() {
 
                 {/* Main Card Outer Shell */}
                 <div 
-                  className={`relative p-5 sm:p-7 rounded-3xl bg-black/95 sm:bg-black/90 border transition-all duration-300 backdrop-blur-xl flex flex-col justify-between min-h-[440px] sm:min-h-[460px] shadow-[0_0_30px_rgba(0,0,0,0.9)] ${
+                  className={`relative p-5 sm:p-6 rounded-3xl bg-black/95 sm:bg-black/90 border transition-all duration-300 backdrop-blur-xl flex flex-col justify-between min-h-[410px] sm:min-h-[430px] shadow-[0_0_30px_rgba(0,0,0,0.9)] ${
                     isActive 
                       ? "border-red-500/60 shadow-[0_0_35px_rgba(239,68,68,0.25)]" 
                       : "border-red-500/20 hover:border-red-500/40"
                   }`}
                 >
-                  <div>
+                  <div className={`transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-30"}`}>
                     {/* Header Row: Icon + Subtitle Badge */}
-                    <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
-                      <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg shrink-0 ${
+                    <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4">
+                      <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg shrink-0 ${
                         isActive 
                           ? "bg-red-950 border border-red-500/50 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.3)]" 
                           : "bg-red-950/60 border border-red-500/20 text-neutral-400"
                       }`}>
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <service.icon className="w-5 h-5" />
                       </div>
-                      <span className="px-2.5 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider truncate max-w-[200px] text-right">
+                      <span className="px-2.5 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider truncate max-w-[220px] text-right">
                         {service.subtitle}
                       </span>
                     </div>
 
                     {/* Service Title */}
-                    <h3 className="text-xl sm:text-3xl font-black text-white tracking-tight mb-2 sm:mb-3">
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
                       {service.title}
                     </h3>
 
                     {/* Service Description */}
-                    <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5 font-normal">
+                    <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 font-normal">
                       {service.description}
                     </p>
 
                     {/* Deliverables List */}
-                    <div className="border-t border-red-500/20 pt-3 sm:pt-4 mb-4">
-                      <div className="text-[10px] sm:text-[11px] font-mono text-red-400 uppercase tracking-widest font-bold mb-2 sm:mb-3 flex items-center gap-1.5">
+                    <div className="border-t border-red-500/20 pt-3 mb-3">
+                      <div className="text-[10px] sm:text-[11px] font-mono text-red-400 uppercase tracking-widest font-bold mb-2 flex items-center gap-1.5">
                         <Sparkles className="w-3 h-3 text-red-500 shrink-0" />
                         Key Deliverables
                       </div>
-                      <ul className="space-y-1.5 sm:space-y-2 text-xs text-neutral-300">
+                      <ul className="space-y-1.5 text-xs text-neutral-300">
                         {service.features.map((feat, fIdx) => (
                           <li key={fIdx} className="flex items-start gap-2">
                             <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500 shrink-0 mt-0.5" />
@@ -289,7 +265,7 @@ export default function CapabilitiesSection() {
                   </div>
 
                   {/* Tech Stack Footer Pills */}
-                  <div className="border-t border-red-500/20 pt-3 sm:pt-4">
+                  <div className={`border-t border-red-500/20 pt-3 transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-30"}`}>
                     <div className="flex flex-wrap gap-1.5">
                       {service.techStack.map((tech, tIdx) => (
                         <span 
@@ -310,7 +286,7 @@ export default function CapabilitiesSection() {
       </div>
 
       {/* Controls & Progress Indicator */}
-      <div className="mt-4 flex flex-col items-center gap-3">
+      <div className="mt-4 sm:mt-5 flex flex-col items-center gap-3 relative z-20">
         
         {/* Progress Bar Track */}
         <div className="w-48 sm:w-64 h-1.5 bg-red-950/80 rounded-full overflow-hidden border border-red-500/20 shadow-inner">
@@ -320,7 +296,7 @@ export default function CapabilitiesSection() {
           />
         </div>
 
-        {/* Navigation Buttons and Dots with >44px Touch Targets */}
+        {/* Navigation Buttons and Dots */}
         <div className="flex items-center gap-3 sm:gap-6">
           <button
             onClick={handlePrev}
