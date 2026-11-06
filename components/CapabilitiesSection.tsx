@@ -10,8 +10,7 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
-  ShieldCheck,
-  Pause
+  ShieldCheck
 } from "lucide-react";
 
 interface ServiceItem {
@@ -167,7 +166,7 @@ export default function CapabilitiesSection() {
       </div>
 
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-14">
+      <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-500/35 text-red-400 text-xs font-mono uppercase tracking-widest mb-3 backdrop-blur-md shadow-[0_0_15px_rgba(239,68,68,0.2)]">
           <Sparkles className="w-3.5 h-3.5 text-red-500 shrink-0" />
           <span>Services & Solutions</span>
@@ -180,35 +179,9 @@ export default function CapabilitiesSection() {
         </p>
       </div>
 
-      {/* Auto-Rotation / Manual Status Badge */}
-      <div className="flex justify-center mb-6">
-        <button
-          onClick={handleUserInteraction}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/90 border border-red-500/30 text-[11px] font-mono text-neutral-300 shadow-md backdrop-blur-md min-h-[44px] cursor-pointer hover:border-red-500/60 transition-colors"
-          aria-label="Toggle auto rotation pause"
-        >
-          {!isUserInteracted ? (
-            <>
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
-              </span>
-              <span className="text-red-400 font-semibold">AUTO-PLAY ACTIVE</span>
-              <span className="text-neutral-400 hidden xs:inline">| Tap to pause</span>
-            </>
-          ) : (
-            <>
-              <Pause className="w-3.5 h-3.5 text-red-400 shrink-0" />
-              <span className="text-neutral-300 font-medium">MANUAL CONTROL</span>
-              <span className="text-neutral-400 hidden xs:inline">| Auto-play paused</span>
-            </>
-          )}
-        </button>
-      </div>
-
       {/* Carousel Container Stage with 3D Perspective */}
       <div 
-        className="relative min-h-[500px] sm:min-h-[520px] flex items-center justify-center overflow-hidden py-4 [perspective:1000px] sm:[perspective:1200px]"
+        className="relative min-h-[460px] sm:min-h-[480px] flex items-center justify-center overflow-hidden py-2 [perspective:1000px] sm:[perspective:1200px]"
         onMouseEnter={handleUserInteraction}
         onTouchStart={handleUserInteraction}
       >
@@ -267,7 +240,7 @@ export default function CapabilitiesSection() {
 
                 {/* Main Card Outer Shell */}
                 <div 
-                  className={`relative p-5 sm:p-8 rounded-3xl bg-black/95 sm:bg-black/90 border transition-all duration-300 backdrop-blur-xl flex flex-col justify-between min-h-[460px] sm:min-h-[490px] shadow-[0_0_30px_rgba(0,0,0,0.9)] ${
+                  className={`relative p-5 sm:p-7 rounded-3xl bg-black/95 sm:bg-black/90 border transition-all duration-300 backdrop-blur-xl flex flex-col justify-between min-h-[440px] sm:min-h-[460px] shadow-[0_0_30px_rgba(0,0,0,0.9)] ${
                     isActive 
                       ? "border-red-500/60 shadow-[0_0_35px_rgba(239,68,68,0.25)]" 
                       : "border-red-500/20 hover:border-red-500/40"
@@ -308,7 +281,7 @@ export default function CapabilitiesSection() {
                         {service.features.map((feat, fIdx) => (
                           <li key={fIdx} className="flex items-start gap-2">
                             <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500 shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{feat}</span>
+                            <span className="leading-tight">{feat}</span>
                           </li>
                         ))}
                       </ul>
@@ -337,7 +310,7 @@ export default function CapabilitiesSection() {
       </div>
 
       {/* Controls & Progress Indicator */}
-      <div className="mt-6 flex flex-col items-center gap-4">
+      <div className="mt-4 flex flex-col items-center gap-3">
         
         {/* Progress Bar Track */}
         <div className="w-48 sm:w-64 h-1.5 bg-red-950/80 rounded-full overflow-hidden border border-red-500/20 shadow-inner">

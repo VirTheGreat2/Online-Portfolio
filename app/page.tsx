@@ -448,7 +448,7 @@ export default async function Portfolio() {
                               {project.title}
                             </h3>
 
-                            <p className="text-neutral-300 text-xs sm:text-sm line-clamp-3 leading-relaxed font-normal">
+                            <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed font-normal">
                               {project.description}
                             </p>
                           </div>
