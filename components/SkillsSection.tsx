@@ -61,12 +61,12 @@ export default function SkillsSection() {
   );
 
   return (
-    <div className="space-y-8">
-      {/* Category Selection Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-3">
+    <div className="space-y-6 sm:space-y-8">
+      {/* Category Selection Tabs with >44px Touch Targets */}
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-1">
         <button
           onClick={() => setActiveTab("all")}
-          className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all ${
+          className={`px-4 sm:px-5 py-3 min-h-[44px] rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center ${
             activeTab === "all"
               ? "bg-red-600 text-white shadow-[0_0_15px_rgba(239,68,68,0.4)] border border-red-500"
               : "bg-black/80 text-neutral-400 border border-neutral-800 hover:border-red-500/40 hover:text-white"
@@ -80,13 +80,13 @@ export default function SkillsSection() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all ${
+              className={`flex items-center gap-2 px-4 sm:px-5 py-3 min-h-[44px] rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
                 activeTab === cat.id
                   ? "bg-red-600 text-white shadow-[0_0_15px_rgba(239,68,68,0.4)] border border-red-500"
                   : "bg-black/80 text-neutral-400 border border-neutral-800 hover:border-red-500/40 hover:text-white"
               }`}
             >
-              <Icon size={14} />
+              <Icon size={14} className="shrink-0" />
               <span>{cat.title}</span>
             </button>
           );
@@ -97,14 +97,14 @@ export default function SkillsSection() {
       <div
         className={`grid grid-cols-1 ${
           filteredCategories.length > 1 ? "md:grid-cols-3" : "max-w-xl mx-auto"
-        } gap-6 items-stretch`}
+        } gap-5 sm:gap-6 items-stretch`}
       >
         {filteredCategories.map((category) => {
           const Icon = category.icon;
           return (
             <div
               key={category.id}
-              className="rounded-3xl p-6 sm:p-7 bg-black/80 border border-red-500/30 hover:border-red-500/60 transition-all duration-300 flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:shadow-[0_0_25px_rgba(239,68,68,0.2)] group"
+              className="rounded-3xl p-5 sm:p-7 bg-black/90 border border-red-500/30 hover:border-red-500/60 transition-all duration-300 flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:shadow-[0_0_25px_rgba(239,68,68,0.2)] group"
             >
               {/* Header */}
               <div className="mb-4">
@@ -112,7 +112,7 @@ export default function SkillsSection() {
                   <div className="p-2.5 rounded-xl bg-red-950/80 border border-red-500/40 text-red-400 group-hover:bg-red-600 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-[0_0_12px_rgba(239,68,68,0.2)] shrink-0">
                     <Icon size={20} />
                   </div>
-                  <h3 className="text-xl font-extrabold text-white group-hover:text-red-400 transition-colors tracking-tight">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-white group-hover:text-red-400 transition-colors tracking-tight">
                     {category.title}
                   </h3>
                 </div>
@@ -126,7 +126,7 @@ export default function SkillsSection() {
                 {category.skills.map((skill, idx) => (
                   <div
                     key={idx}
-                    className="p-3 rounded-xl bg-red-950/20 hover:bg-red-950/40 border border-red-500/20 hover:border-red-500/40 flex items-center justify-between gap-3 text-xs transition-colors"
+                    className="p-3 sm:p-3.5 min-h-[44px] rounded-xl bg-red-950/20 hover:bg-red-950/40 border border-red-500/20 hover:border-red-500/40 flex items-center justify-between gap-2.5 text-xs transition-colors"
                   >
                     <span className="font-semibold text-white truncate min-w-0">
                       {skill.name}

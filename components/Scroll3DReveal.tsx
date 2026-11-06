@@ -29,8 +29,8 @@ export default function Scroll3DReveal({
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.1,
+        rootMargin: "0px 0px -30px 0px",
       }
     );
 
@@ -46,22 +46,22 @@ export default function Scroll3DReveal({
   const getInitialTransform = () => {
     switch (direction) {
       case "up":
-        return "perspective(1000px) rotateX(25deg) translateY(40px) translateZ(-40px)";
+        return "perspective(1000px) rotateX(15deg) translateY(30px) translateZ(-20px)";
       case "down":
-        return "perspective(1000px) rotateX(-25deg) translateY(-40px) translateZ(-40px)";
+        return "perspective(1000px) rotateX(-15deg) translateY(-30px) translateZ(-20px)";
       case "left":
-        return "perspective(1000px) rotateY(-25deg) translateX(40px) translateZ(-40px)";
+        return "perspective(1000px) rotateY(-15deg) translateX(30px) translateZ(-20px)";
       case "right":
-        return "perspective(1000px) rotateY(25deg) translateX(-40px) translateZ(-40px)";
+        return "perspective(1000px) rotateY(15deg) translateX(-30px) translateZ(-20px)";
       default:
-        return "perspective(1000px) rotateX(25deg) translateY(40px) translateZ(-40px)";
+        return "perspective(1000px) rotateX(15deg) translateY(30px) translateZ(-20px)";
     }
   };
 
   return (
     <div
       ref={domRef}
-      className={`transition-all duration-1000 cubic-bezier(0.16, 1, 0.3, 1) ${className}`}
+      className={`transition-all duration-700 ease-out transform-gpu ${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible
@@ -69,6 +69,7 @@ export default function Scroll3DReveal({
           : getInitialTransform(),
         transitionDelay: `${delay}ms`,
         transformStyle: "preserve-3d",
+        willChange: "transform, opacity",
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, ReactNode } from "react";
+import React, { useState, useRef, ReactNode, useEffect } from "react";
 
 interface ThreeDCardProps {
   children: ReactNode;
@@ -13,16 +13,21 @@ export default function ThreeDCard({
   children,
   className = "",
   glowColor = "rgba(239, 68, 68, 0.4)",
-  intensity = 15,
+  intensity = 12,
 }: ThreeDCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotX, setRotX] = useState(0);
   const [rotY, setRotY] = useState(0);
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50, opacity: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (isTouchDevice || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -42,10 +47,12 @@ export default function ThreeDCard({
   };
 
   const handleMouseEnter = () => {
+    if (isTouchDevice) return;
     setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     setIsHovered(false);
     setRotX(0);
     setRotY(0);
@@ -58,11 +65,11 @@ export default function ThreeDCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative perspective-1000 group transition-transform duration-200 ease-out ${className}`}
+      className={`relative perspective-1000 group transition-transform duration-200 ease-out transform-gpu ${className}`}
       style={{
-        transform: `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(${
-          isHovered ? 1.02 : 1
-        }, ${isHovered ? 1.02 : 1}, 1)`,
+        transform: !isTouchDevice && isHovered
+          ? `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1)`
+          : "none",
         transformStyle: "preserve-3d",
       }}
     >
@@ -70,7 +77,7 @@ export default function ThreeDCard({
       <div
         className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-300 z-30 overflow-hidden"
         style={{
-          opacity: glarePos.opacity,
+          opacity: !isTouchDevice ? glarePos.opacity : 0,
           background: `radial-gradient(600px circle at ${glarePos.x}% ${glarePos.y}%, ${glowColor}, transparent 60%)`,
         }}
       />
