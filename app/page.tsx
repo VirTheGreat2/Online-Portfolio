@@ -6,7 +6,6 @@ import BioFormModal from "@/components/BioFormModal";
 import ProjectFormModal from "@/components/ProjectFormModal";
 import ParallaxWrapper from "@/components/ParallaxWrapper";
 import ScrollIndicator from "@/components/ScrollIndicator";
-import SkillsSection from "@/components/SkillsSection";
 import ThreeDCard from "@/components/ThreeDCard";
 import Scroll3DReveal from "@/components/Scroll3DReveal";
 import CapabilitiesSection from "@/components/CapabilitiesSection";
@@ -24,8 +23,7 @@ import {
   FolderGit2,
   Globe,
   Plus,
-  ShieldCheck,
-  UserCheck
+  ShieldCheck
 } from "lucide-react";
 
 function GithubIcon({ className = "w-5 h-5" }: { className?: string }) {
@@ -143,13 +141,6 @@ export default async function Portfolio() {
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500/60 group-hover:bg-red-400 group-hover:shadow-[0_0_6px_#ef4444] transition-all" />
                 <span>Projects</span>
-              </a>
-              <a
-                href="#skills"
-                className="group px-3 py-2 rounded-xl border border-red-500/25 bg-red-950/20 hover:bg-red-900/40 hover:border-red-500/60 hover:text-red-300 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shadow-sm hover:shadow-[0_0_12px_rgba(239,68,68,0.25)] active:scale-95 font-medium shrink-0 min-h-[44px]"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500/60 group-hover:bg-red-400 group-hover:shadow-[0_0_6px_#ef4444] transition-all" />
-                <span>Stack</span>
               </a>
               <a
                 href="#contact"
@@ -453,20 +444,6 @@ export default async function Portfolio() {
                             </p>
                           </div>
 
-                          {/* Tech Stack Pills */}
-                          {project.tech_stack && project.tech_stack.length > 0 && (
-                            <div className="flex flex-wrap gap-1.5 pt-2">
-                              {project.tech_stack.map((tech: string, i: number) => (
-                                <span
-                                  key={i}
-                                  className="px-2.5 py-1 rounded-md bg-red-950/70 border border-red-500/35 text-red-300 font-mono text-[10px] sm:text-[11px] font-semibold"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-
                           {/* Action Links with >44px Touch Targets */}
                           <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-red-500/20 text-xs font-mono">
                             {project.live_url && (
@@ -500,26 +477,6 @@ export default async function Portfolio() {
                   ))}
                 </div>
               )}
-            </section>
-          </Scroll3DReveal>
-
-          {/* Section 4: Tech Stack */}
-          <Scroll3DReveal direction="up">
-            <section id="skills" className="space-y-6 sm:space-y-8 scroll-mt-28" suppressHydrationWarning>
-              <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-500/35 text-red-400 text-xs font-mono uppercase tracking-widest mb-3 backdrop-blur-md">
-                  <Code2 className="w-3.5 h-3.5 text-red-500 shrink-0" />
-                  <span>Technical Arsenal</span>
-                </div>
-                <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-                  My <span className="gradient-text-red">Tech Stack</span>
-                </h2>
-                <p className="text-neutral-300 text-xs sm:text-base mt-3 max-w-2xl mx-auto leading-relaxed px-2">
-                  A breakdown of the modern frameworks, languages, databases, and development tools I use to build robust web applications.
-                </p>
-              </div>
-
-              <SkillsSection />
             </section>
           </Scroll3DReveal>
 
