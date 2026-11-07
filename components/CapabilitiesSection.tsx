@@ -24,41 +24,41 @@ interface ServiceItem {
 const SERVICES: ServiceItem[] = [
   {
     id: "websites",
-    title: "High-Converting Websites",
-    subtitle: "Speed & Customer Growth",
+    title: "Turnkey Web Solutions",
+    subtitle: "Instant Access & High Conversion",
     icon: Layout,
-    description: "Fast, custom websites designed to showcase your brand, rank high on Google, and convert site visitors into paying clients.",
+    description: "High-performance website packages designed to showcase brands, optimize conversions, and deliver lightning-fast loading speeds.",
     features: [
-      "Mobile-Friendly Layout for All Screen Sizes",
-      "Google Search Optimization to Attract More Clients",
-      "Instant Page Loading to Stop Visitors Leaving",
-      "Easy Content Management for Quick Updates"
+      "Mobile-Friendly Responsive Architecture",
+      "Built-in Search & Performance Optimization",
+      "Instant Digital Deployment",
+      "Easy Admin Management & Customization"
     ]
   },
   {
     id: "apps",
-    title: "Custom Web Applications",
-    subtitle: "Interactive Business Tools",
+    title: "Enterprise Web Applications",
+    subtitle: "Interactive Digital Tools",
     icon: Workflow,
-    description: "Tailored web software that automates client interactions, manages workflows, and streamlines your everyday operations.",
+    description: "Robust web software products that automate client interactions, manage complex workflows, and power online store ecosystems.",
     features: [
-      "Custom Client Dashboards & Admin Panels",
-      "Secure Account Login & User Protection",
-      "Live Data Updates & Instant Synchronization",
-      "Online Forms & Automated Customer Ordering"
+      "Interactive Client Dashboards & Control Panels",
+      "Secure Authentication & User Data Protection",
+      "Real-time Data Synchronization",
+      "Scalable Cloud-Ready Infrastructure"
     ]
   },
   {
     id: "systems",
-    title: "Business Automation & Systems",
-    subtitle: "Save Time & Eliminate Manual Work",
+    title: "Automated Software Systems",
+    subtitle: "Maximize Efficiency & Productivity",
     icon: Database,
-    description: "Smart system connections and automated database workflows that replace tedious manual tasks and keep your business running smoothly.",
+    description: "Smart automation tools and database systems engineered to replace manual tasks and keep store operations running effortlessly.",
     features: [
-      "Connect Your Apps to Share Data Automatically",
-      "Automated Customer Notifications & Email Flows",
-      "Centralized Customer Database & File Storage",
-      "Admin Controls to Monitor Team & Business Activity"
+      "Seamless Third-Party API Integrations",
+      "Automated Customer Order Notifications",
+      "Centralized Product Data & Storage",
+      "Advanced Admin Monitoring & Analytics"
     ]
   }
 ];
@@ -131,15 +131,11 @@ export default function CapabilitiesSection() {
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-500/35 text-red-400 text-xs font-mono uppercase tracking-widest mb-3 backdrop-blur-md shadow-[0_0_15px_rgba(239,68,68,0.2)]">
-          <Sparkles className="w-3.5 h-3.5 text-red-500 shrink-0" />
-          <span>Services & Solutions</span>
-        </div>
         <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-          What I <span className="gradient-text-red">Offer</span>
+          What We <span className="gradient-text-red">Offer</span>
         </h2>
         <p className="text-neutral-300 text-xs sm:text-base mt-3 max-w-2xl mx-auto leading-relaxed px-2 font-normal">
-          I build tailored web solutions designed to solve business challenges, improve operational efficiency, and deliver outstanding user experiences.
+          Explore our premium digital product offerings designed to solve business challenges, improve operational efficiency, and deliver outstanding software experiences.
         </p>
       </div>
 
@@ -241,7 +237,7 @@ export default function CapabilitiesSection() {
               >
                 <div className={`transition-opacity duration-300 flex-1 flex flex-col justify-between ${isActive ? "opacity-100" : "opacity-60"}`}>
                   <div>
-                    {/* Header Row: Icon + Subtitle Badge */}
+                    {/* Header Row: Icon */}
                     <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4">
                       <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg shrink-0 ${
                         isActive 
@@ -250,9 +246,6 @@ export default function CapabilitiesSection() {
                       }`}>
                         <service.icon className="w-5 h-5" />
                       </div>
-                      <span className="px-2.5 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider truncate max-w-[220px] text-right">
-                        {service.subtitle}
-                      </span>
                     </div>
 
                     {/* Service Title */}

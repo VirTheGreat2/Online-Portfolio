@@ -207,6 +207,52 @@
   animation: floatSlow 6s ease-in-out infinite;
 }
 
+@keyframes mobileGlowWander {
+  0% {
+    top: -10%;
+    left: -10%;
+  }
+  25% {
+    top: 45%;
+    left: 75%;
+  }
+  50% {
+    top: 85%;
+    left: 15%;
+  }
+  75% {
+    top: 25%;
+    left: -15%;
+  }
+  100% {
+    top: -10%;
+    left: -10%;
+  }
+}
+
+@keyframes mobileBrightnessPulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: blur(75px) brightness(1.2);
+  }
+  30% {
+    opacity: 0.05;
+    filter: blur(120px) brightness(0.15);
+  }
+  65% {
+    opacity: 0.85;
+    filter: blur(65px) brightness(1.4);
+  }
+  85% {
+    opacity: 0.12;
+    filter: blur(110px) brightness(0.3);
+  }
+}
+
+.animate-mobile-glow {
+  animation: mobileGlowWander 20s ease-in-out infinite, mobileBrightnessPulse 12s ease-in-out infinite;
+}
+
 .animated-gradient-border {
   background-size: 200% 200%;
   animation: borderGlowRun 4s linear infinite;

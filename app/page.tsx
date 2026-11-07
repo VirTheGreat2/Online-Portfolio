@@ -73,113 +73,22 @@ export default async function Portfolio() {
       <ScrollIndicator />
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 relative overflow-x-hidden" suppressHydrationWarning>
-        {/* Navigation Header */}
-        <header className="sticky top-3 sm:top-6 z-50 mb-10 md:mb-20">
-          <nav
-            className="max-w-6xl mx-auto rounded-2xl p-2.5 sm:px-6 sm:py-3.5 flex flex-col md:flex-row md:items-center justify-between border border-red-500/35 bg-black/95 shadow-[0_0_25px_rgba(239,68,68,0.15)] backdrop-blur-2xl transition-all gap-2 sm:gap-3"
-            aria-label="Global"
-          >
-            <div className="flex items-center justify-between gap-2 w-full md:w-auto">
-              {/* Logo / Brand Name */}
-              <Link href="/" className="flex items-center gap-2.5 group shrink-0 min-h-[44px]">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 via-red-500 to-red-950 flex items-center justify-center text-white font-black text-base shadow-[0_0_15px_rgba(239,68,68,0.6)] group-hover:scale-105 transition-transform border border-red-400/40 shrink-0">
-                  {fullName.charAt(0)}
-                </div>
-                <div className="flex flex-col shrink-0 min-w-0">
-                  <span className="font-extrabold text-white tracking-wide text-xs sm:text-base group-hover:text-red-400 transition-colors whitespace-nowrap">
-                    {fullName}
-                  </span>
-                  <span className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest hidden xl:inline whitespace-nowrap">
-                    Full-Stack Web Developer
-                  </span>
-                </div>
-              </Link>
-
-              {/* Status & Admin Control */}
-              <div className="flex items-center gap-2 shrink-0">
-                <div className="flex items-center gap-1.5 px-3 py-2 min-h-[44px] rounded-xl bg-red-950/50 border border-red-500/40 text-red-400 text-[11px] sm:text-xs font-mono whitespace-nowrap shrink-0">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_#ef4444] shrink-0" />
-                  <span className="hidden xs:inline whitespace-nowrap">AVAILABLE FOR WORK</span>
-                  <span className="xs:hidden font-bold">AVAILABLE</span>
-                </div>
-
-                {isAdmin && (
-                  <div className="relative group/nav shrink-0">
-                    <BioFormModal
-                      profile={profile}
-                      trigger={
-                        <button className="px-3 py-2 min-h-[44px] rounded-xl bg-red-600/30 text-red-300 hover:bg-red-600/60 border border-red-500/50 transition-all text-xs font-mono font-semibold flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer">
-                          <Terminal className="w-3.5 h-3.5 text-red-400 shrink-0" />
-                          <span className="hidden sm:inline">CMS ADMIN</span>
-                        </button>
-                      }
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Nav Jump Links (Scrollable on mobile, flex on desktop) */}
-            <div className="flex items-center gap-1.5 lg:gap-2 text-xs font-mono uppercase tracking-wider text-neutral-300 overflow-x-auto no-scrollbar py-1 w-full md:w-auto border-t md:border-t-0 border-red-500/20 pt-2 md:pt-0">
-              <a
-                href="#about"
-                className="group px-3 py-2 rounded-xl border border-red-500/25 bg-red-950/20 hover:bg-red-900/40 hover:border-red-500/60 hover:text-red-300 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shadow-sm hover:shadow-[0_0_12px_rgba(239,68,68,0.25)] active:scale-95 font-medium shrink-0 min-h-[44px]"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500/60 group-hover:bg-red-400 group-hover:shadow-[0_0_6px_#ef4444] transition-all" />
-                <span>About</span>
-              </a>
-              <a
-                href="#services"
-                className="group px-3 py-2 rounded-xl border border-red-500/25 bg-red-950/20 hover:bg-red-900/40 hover:border-red-500/60 hover:text-red-300 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shadow-sm hover:shadow-[0_0_12px_rgba(239,68,68,0.25)] active:scale-95 font-medium shrink-0 min-h-[44px]"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500/60 group-hover:bg-red-400 group-hover:shadow-[0_0_6px_#ef4444] transition-all" />
-                <span>Offerings</span>
-              </a>
-              <a
-                href="#projects"
-                className="group px-3 py-2 rounded-xl border border-red-500/25 bg-red-950/20 hover:bg-red-900/40 hover:border-red-500/60 hover:text-red-300 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shadow-sm hover:shadow-[0_0_12px_rgba(239,68,68,0.25)] active:scale-95 font-medium shrink-0 min-h-[44px]"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500/60 group-hover:bg-red-400 group-hover:shadow-[0_0_6px_#ef4444] transition-all" />
-                <span>Projects</span>
-              </a>
-              <a
-                href="#contact"
-                className="group px-3 py-2 rounded-xl border border-red-500/25 bg-red-950/20 hover:bg-red-900/40 hover:border-red-500/60 hover:text-red-300 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shadow-sm hover:shadow-[0_0_12px_rgba(239,68,68,0.25)] active:scale-95 font-medium shrink-0 min-h-[44px]"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500/60 group-hover:bg-red-400 group-hover:shadow-[0_0_6px_#ef4444] transition-all" />
-                <span>Contact</span>
-              </a>
-            </div>
-          </nav>
-        </header>
-
         {/* Main Content */}
         <main className="space-y-20 md:space-y-36" suppressHydrationWarning>
           
           {/* Clean & High-Impact Hero Section */}
           <Scroll3DReveal direction="up">
-            <section className="flex flex-col items-center text-center max-w-4xl mx-auto relative pt-2 sm:pt-4" suppressHydrationWarning>
+            <section className="flex flex-col items-center text-center max-w-4xl mx-auto relative pt-28 sm:pt-44 md:pt-52" suppressHydrationWarning>
               {/* Ambient Accent Glow */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] h-[220px] sm:h-[300px] bg-red-600/10 rounded-full blur-[90px] sm:blur-[100px] pointer-events-none" />
 
-              {/* Status Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-2 min-h-[44px] rounded-full bg-red-950/60 border border-red-500/40 text-red-400 text-xs sm:text-sm font-mono font-semibold mb-6 backdrop-blur-md shadow-[0_0_15px_rgba(239,68,68,0.2)] max-w-full">
-                <Sparkles className="w-4 h-4 text-red-500 shrink-0" />
-                <span className="uppercase tracking-wider truncate">{headline}</span>
-              </div>
-
               {/* Main Headline */}
-              <h1 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.15] mb-6">
+              <h1 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.15] mb-8">
                 Building Modern Websites &{" "}
                 <span className="gradient-text-red drop-shadow-[0_0_20px_rgba(239,68,68,0.4)] block sm:inline">
                   Web Applications.
                 </span>
               </h1>
-
-              {/* Subtitle / Bio summary */}
-              <p className="text-sm sm:text-xl text-neutral-300 max-w-2xl leading-relaxed mb-8 font-normal px-2">
-                {shortBio}
-              </p>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto mb-10 sm:mb-12">
@@ -227,21 +136,21 @@ export default async function Portfolio() {
 
               {/* Core Feature Highlights Strip */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-4xl text-left">
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-black/90 border border-red-500/25">
-                  <div className="text-red-500 font-mono text-sm sm:text-xl font-black mb-1 truncate">Custom Built</div>
-                  <div className="text-neutral-400 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider">Tailored to Requirements</div>
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-black/90 border border-red-500/25 flex flex-col justify-center">
+                  <div className="text-red-500 font-mono text-xs sm:text-sm md:text-base font-bold sm:font-black tracking-tight leading-snug mb-1">Custom Built</div>
+                  <div className="text-neutral-400 text-[10px] sm:text-xs font-mono uppercase tracking-wider leading-tight">Tailored to Requirements</div>
                 </div>
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-black/90 border border-red-500/25">
-                  <div className="text-red-500 font-mono text-sm sm:text-xl font-black mb-1 truncate">Full-Stack</div>
-                  <div className="text-neutral-400 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider">Frontend to Backend</div>
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-black/90 border border-red-500/25 flex flex-col justify-center">
+                  <div className="text-red-500 font-mono text-xs sm:text-sm md:text-base font-bold sm:font-black tracking-tight leading-snug mb-1">Full-Stack</div>
+                  <div className="text-neutral-400 text-[10px] sm:text-xs font-mono uppercase tracking-wider leading-tight">Frontend to Backend</div>
                 </div>
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-black/90 border border-red-500/25">
-                  <div className="text-red-500 font-mono text-sm sm:text-xl font-black mb-1 truncate">High Performance</div>
-                  <div className="text-neutral-400 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider">Fast & SEO Optimized</div>
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-black/90 border border-red-500/25 flex flex-col justify-center">
+                  <div className="text-red-500 font-mono text-xs sm:text-sm md:text-base font-bold sm:font-black tracking-tight leading-snug mb-1">High Performance</div>
+                  <div className="text-neutral-400 text-[10px] sm:text-xs font-mono uppercase tracking-wider leading-tight">Fast & SEO Optimized</div>
                 </div>
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-black/90 border border-red-500/25">
-                  <div className="text-red-500 font-mono text-sm sm:text-xl font-black mb-1 truncate">Business Systems</div>
-                  <div className="text-neutral-400 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider">Workflow Automation</div>
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-black/90 border border-red-500/25 flex flex-col justify-center">
+                  <div className="text-red-500 font-mono text-xs sm:text-sm md:text-base font-bold sm:font-black tracking-tight leading-snug mb-1">Business Systems</div>
+                  <div className="text-neutral-400 text-[10px] sm:text-xs font-mono uppercase tracking-wider leading-tight">Workflow Automation</div>
                 </div>
               </div>
             </section>
@@ -283,34 +192,8 @@ export default async function Portfolio() {
 
                   {/* Identity Content */}
                   <div className="flex-1 space-y-5 sm:space-y-6 text-center md:text-left">
-                    <div>
-                      <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 mb-2">
-                        <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                          {fullName}
-                        </h2>
-                        <span className="px-3 py-1 rounded-full bg-red-950/80 border border-red-500/40 text-red-400 text-[10px] sm:text-xs font-mono font-bold tracking-wider">
-                          FULL-STACK WEB DEVELOPER
-                        </span>
-                      </div>
-
-                      <p className="text-red-400/80 font-mono text-xs sm:text-sm">
-                        📍 {profile?.location || "Websites & Web Applications Specialist"}
-                      </p>
-                    </div>
-
-                    {/* Detailed Bio Narrative */}
-                    <div className="text-neutral-300 leading-relaxed text-xs sm:text-base space-y-4 font-normal">
-                      {profile?.bio_text ? (
-                        <p className="whitespace-pre-line">{profile.bio_text}</p>
-                      ) : (
-                        <p>
-                          I am Virgilio Flor E. Guaño, a dedicated Full-stack Web Developer focused on crafting high-performing websites and web applications. With expertise spanning front-end user interfaces, back-end API integrations, and database architectures, I deliver digital solutions built to modern standards.
-                        </p>
-                      )}
-                    </div>
-
                     {/* Highlights Cards */}
-                    <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-red-500/20">
+                    <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                       <div className="p-3.5 rounded-2xl bg-black/60 border border-red-500/25">
                         <div className="flex items-center gap-2 text-red-400 mb-1">
                           <Code2 className="w-4 h-4 shrink-0" />

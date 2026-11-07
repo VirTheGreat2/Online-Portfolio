@@ -27,16 +27,22 @@ export default function ParallaxWrapper({
 
   return (
     <div className="relative min-h-screen bg-black text-slate-100 overflow-x-hidden selection:bg-red-600/40 selection:text-white font-sans">
-      {/* Interactive Red Laser Cursor Glow Spot */}
+      {/* PC Interactive Red Laser Cursor Glow Spot (Desktop Only) */}
       {isMounted && (
         <div
-          className="fixed pointer-events-none z-0 w-[500px] h-[500px] rounded-full bg-red-600/15 blur-[120px] transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2"
+          className="hidden md:block fixed pointer-events-none z-0 w-[500px] h-[500px] rounded-full bg-red-600/15 blur-[120px] transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2"
           style={{
             left: `${cursorPos.x}px`,
             top: `${cursorPos.y}px`,
           }}
         />
       )}
+
+      {/* Mobile Dedicated Animated Glowing Orb (Mobile Only) */}
+      {/* Moves around in & out of screen with slow brightness changes (going dark & normal) */}
+      <div className="block md:hidden fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute w-[280px] h-[280px] rounded-full bg-gradient-to-br from-red-600/50 via-rose-600/30 to-red-900/40 blur-[70px] animate-mobile-glow pointer-events-none" />
+      </div>
 
       {/* Dynamic Animated Ambient Red Glows */}
       <div
